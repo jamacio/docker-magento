@@ -57,13 +57,27 @@ cd docker-magento
 cp .env.sample .env
 ```
 ```
-make up
+make build
 ```
 ```
 make magento-download
 ```
 ```
 make magento-install
+```
+
+## Usage
+To start
+```
+make up
+```
+To stop
+```
+make stop
+```
+To watch
+```
+make watch
 ```
 
 
