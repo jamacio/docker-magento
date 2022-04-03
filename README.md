@@ -46,36 +46,47 @@ sudo apt install build-essential
 
 
 ## App Install
-
+Clone this repo
 ```
 git clone git@github.com:jamacio/docker-magento.git
 ```
+---
+Go to the directory and copy the configuration example
 ```
 cd docker-magento
 ```
 ```
 cp .env.sample .env
 ```
+---
+After running the build command, notice that a folder has been created: magento
 ```
 make build
 ```
+---
+maybe you need to inform username get it here: [Authentication (repo.magento.com)](https://marketplace.magento.com/customer/accessKeys/)
+
 ```
 make magento-download
 ```
+---
+Install Application
 ```
 make magento-install
 ```
 
 ## Usage
-To start
+Start Application
 ```
 make up
 ```
-To stop
+---
+Stop Application
 ```
 make stop
 ```
-To watch
+---
+Watch Application
 ```
 make watch
 ```
