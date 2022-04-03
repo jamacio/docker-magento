@@ -1,12 +1,19 @@
 up:
+	mkdir -p magento
 	docker-compose -f docker-compose.yml down && docker-compose -f docker-compose.yml up -d --remove-orphans
+
 watch:
+	mkdir -p magento
 	docker-compose -f docker-compose.yml down && docker-compose -f docker-compose.yml up --remove-orphans	
+
 stop:
 	docker-compose -f docker-compose.yml stop
+
 down:
 	docker-compose -f docker-compose.yml down -v	
+	
 build:
+	mkdir -p magento
 	docker-compose -f docker-compose.yml down && docker-compose -f docker-compose.yml up -d --build --remove-orphans
 
 
