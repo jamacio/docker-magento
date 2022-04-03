@@ -1,0 +1,64 @@
+version: "3"
+services:
+  magento-elasticsearch:
+    image: elasticsearch:7.8.1
+    container_name: magento-elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: single-node
+    logging:
+      driver: none
+  magento-mysql:
+    image: mysql:8.0
+    container_name: magento-mysql
+    command: --default-authentication-plugin=mysql_native_password --innodb-buffer-pool-size=2048M
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=magento
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "33060:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    security_opt:
+      - seccomp:unconfined
+  magento-redis:
+    image: redis:latest
+    container_name: magento-redis
+    restart: unless-stopped
+    ports:
+      - "63791:6379"
+    volumes:
+      - redis-data:/data
+    logging:
+      driver: none
+  magento-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    container_name: magento-app
+    working_dir: /magento
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./magento:/magento:cached
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - magento-elasticsearch
+      - magento-mysql
+      - magento-redis
+    depends_on:
+      - magento-mysql
+      - magento-elasticsearch
+      - magento-redis
+
+volumes:
+  mysql-data:
+    driver: local
+  redis-data:
+    driver: local

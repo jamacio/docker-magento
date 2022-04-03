@@ -1,0 +1,5 @@
+*.zip
+*.sql
+.env
+.idea/
+.vscode

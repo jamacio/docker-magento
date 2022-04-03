@@ -1,0 +1,19 @@
+FROM webdevops/php-nginx:7.4
+
+WORKDIR /magento
+ADD ./magento /magento
+RUN rm -rf /magento/generated/code
+
+# COMPOSER
+COPY ./.devops/composer/composer.phar /composer.phar
+
+# NGINX settings
+COPY ./.devops/nginx/vhost.conf /opt/docker/etc/nginx/vhost.conf
+COPY ./.devops/nginx/nginx.conf /opt/docker/etc/nginx/vhost.common.d/nginx.conf
+COPY ./.devops/nginx/http.conf /etc/nginx/http.d/http.conf
+
+COPY ./.devops/scripts/fpm-init.sh /opt/docker/bin/service.d/php-fpm.d/10-fpm-init.sh
+
+# MAGENTO INIT commands
+COPY ./.devops/scripts/magento-init-local.sh /opt/docker/bin/service.d/php-fpm.d/10-init.sh
+COPY ./.devops/scripts/post-deploy.sh /opt/docker/bin/service.d/php-fpm.d/post-deploy.sh
