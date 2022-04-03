@@ -64,7 +64,7 @@ After running the build command, notice that a folder has been created: magento
 make build
 ```
 ---
-maybe you need to inform username get it here: [Authentication (repo.magento.com)](https://marketplace.magento.com/customer/accessKeys/)
+Maybe you need to inform username get it here: [Authentication (repo.magento.com)](https://marketplace.magento.com/customer/accessKeys/)
 
 ```
 make magento-download
