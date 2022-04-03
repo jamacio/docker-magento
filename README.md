@@ -30,37 +30,39 @@ Follow the installation steps for your system.
 
 ## Install Make
 Installing the make command on linux
-1. ```sh
+
+```
 sudo apt-get update 
 ```
-2. ```sh
+
+```
 sudo apt-get install -y make
 ```
 
 You can install make by downloading the build-essential package, as follows 
-```sh
+```
 sudo apt install build-essential
 ```
 
 
 ## App Install
 
-1. ```sh
+```
 git clone git@github.com:jamacio/docker-magento.git
 ```
-2. ```sh
+```
 cd docker-magento
 ```
-3. ```sh
+```
 cp .env.sample .env
 ```
-4. ```sh
+```
 make up
 ```
-5. ```sh
+```
 make magento-download
 ```
-6. ```sh
+```
 make magento-install
 ```
 
@@ -68,15 +70,15 @@ make magento-install
 
 ## Magento/Application
 
-1. ```sh
+1. ``
 make magento-composer update
-```
-2. ```sh
+``
+2. ``
 make magento-restore-db path-to-database-dump.sql
-```
-3. ```sh
+``
+3. ``
 make magento-clear
-```
-4. ```sh
+``
+4. ``
 make magento-bash
-```
+``
